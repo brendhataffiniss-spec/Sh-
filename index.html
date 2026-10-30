@@ -1,150 +1,67 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Achadinho</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff7fa;
-      color: #4a2638;
-    }
-    header {
-      background: #f6a6c1;
-      padding: 28px 18px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: #fff;
-    }
-    header p { color: #fff; margin-bottom: 0; }
-    .busca { padding: 18px; }
-    .busca input {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #edb7ca;
-      border-radius: 12px;
-      font-size: 16px;
-    }
-    main { padding: 0 18px 30px; }
-    .destaque {
-      background: #ffe0eb;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 24px;
-    }
-    h2 { color: #b83268; }
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .produto {
-      background: white;
-      border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 3px 12px #e8cbd5;
-    }
-    .foto {
-      background: #fff0f5;
-      border-radius: 10px;
-      min-height: 100px;
-      display: grid;
-      place-items: center;
-      font-size: 42px;
-    }
-    .produto h3 { font-size: 16px; }
-    .produto p { font-size: 13px; }
-    .botao {
-      display: block;
-      text-align: center;
-      background: #e94f88;
-      color: white;
-      padding: 11px 6px;
-      border-radius: 9px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 24px 12px;
-      font-size: 12px;
-      color: #80566a;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu Achadinho | Ofertas e novidades</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff7fa;color:#4a2638}
+header{background:#f6a6c1;padding:24px 16px;text-align:center}
+header h1{margin:0;font-size:32px}
+header p{margin:8px 0 0}
+main{max-width:900px;margin:auto;padding:18px}
+.search{width:100%;padding:14px;border:1px solid #e8b4c7;border-radius:12px;font-size:16px;margin-bottom:20px}
+.hero{background:linear-gradient(135deg,#f9c8d9,#fff0f5);padding:28px 20px;border-radius:18px;text-align:center;margin-bottom:24px}
+.hero h2{font-size:25px;margin:0 0 10px}
+h2.section{font-size:22px}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.product{background:white;border:1px solid #f1d8e2;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.product .emoji{background:#fff0f5;border-radius:10px;min-height:100px;display:grid;place-items:center;font-size:44px}
+.product h3{font-size:16px;margin:0}
+.product p{font-size:13px;line-height:1.4;margin:0;color:#765568}
+.link{display:block;text-align:center;background:#e94f8a;color:white;text-decoration:none;padding:11px;border-radius:10px;font-weight:bold;margin-top:auto}
+.note{font-size:12px;color:#765568;line-height:1.5;margin-top:24px}
+footer{text-align:center;padding:24px;background:#fce0ea;margin-top:24px;font-size:13px}
+@media(min-width:600px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Meu Achadinho ♡</h1>
-    <p>Achadinhos especiais para você e sua casa!</p>
-  </header>
-
-  <div class="busca">
-    <input id="busca" type="search"
-      placeholder="O que você está procurando?"
-      oninput="filtrar()">
-  </div>
-
-  <main>
-    <section class="destaque">
-      <h2>Seu próximo achadinho está aqui!</h2>
-      <p>Ofertas, organização e produtos selecionados para facilitar seu dia.</p>
-    </section>
-
-    <h2>✨ Achadinhos em destaque</h2>
-
-    <section class="produtos" id="produtos">
-      <article class="produto">
-        <div class="foto">🏠</div>
-        <h3>Organização para casa</h3>
-        <p>Ideias práticas para deixar tudo em ordem.</p>
-        <a class="botao" href="#contato">Ver achadinho</a>
-      </article>
-
-      <article class="produto">
-        <div class="foto">🧺</div>
-        <h3>Utilidades domésticas</h3>
-        <p>Produtos úteis para facilitar sua rotina.</p>
-        <a class="botao" href="#contato">Ver achadinho</a>
-      </article>
-
-      <article class="produto">
-        <div class="foto">🌷</div>
-        <h3>Decoração</h3>
-        <p>Pequenos detalhes que transformam ambientes.</p>
-        <a class="botao" href="#contato">Ver achadinho</a>
-      </article>
-
-      <article class="produto">
-        <div class="foto">💖</div>
-        <h3>Novidades</h3>
-        <p>Novos achadinhos serão adicionados aqui.</p>
-        <a class="botao" href="#contato">Ver achadinho</a>
-      </article>
-    </section>
-
-    <footer id="contato">
-      Meu Achadinho © 2026<br>
-      Os links de produtos serão adicionados após a configuração
-      das ofertas de afiliados.
-    </footer>
-  </main>
-
-  <script>
-    function filtrar() {
-      const busca = document.getElementById('busca')
-        .value.toLowerCase();
-      document.querySelectorAll('.produto').forEach(item => {
-        item.style.display = item.innerText.toLowerCase()
-          .includes(busca) ? '' : 'none';
-      });
-    }
-  </script>
+<header>
+<h1>💕 Meu Achadinho</h1>
+<p>Ofertas, novidades e ideias para sua casa</p>
+</header>
+<main>
+<input id="busca" class="search" type="search" placeholder="🔎 Buscar um achadinho..." aria-label="Buscar produtos">
+<section class="hero">
+<h2>Seu próximo achadinho está aqui!</h2>
+<p>Uma seleção de ideias para facilitar seu dia a dia e deixar sua casa ainda mais especial.</p>
+</section>
+<h2 class="section">✨ Vitrine de achadinhos</h2>
+<div class="products" id="produtos">
+<article class="product" data-nome="organizador de gaveta">
+<div class="emoji">🧺</div><h3>Organização para sua casa</h3><p>Ideias práticas para manter tudo em ordem.</p><a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+<article class="product" data-nome="cozinha utensilios">
+<div class="emoji">🍳</div><h3>Achadinhos para cozinha</h3><p>Utensílios e acessórios para o dia a dia.</p><a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+<article class="product" data-nome="decoracao casa">
+<div class="emoji">🏡</div><h3>Decoração e conforto</h3><p>Inspirações para deixar seu cantinho especial.</p><a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+<article class="product" data-nome="limpeza organizacao">
+<div class="emoji">🧽</div><h3>Limpeza inteligente</h3><p>Produtos úteis para ajudar na rotina da casa.</p><a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+</div>
+<p class="note">Os produtos desta vitrine são exemplos. Os links ainda precisam ser substituídos pelos seus links de afiliada aprovados. Alguns links podem gerar comissão para a loja, sem custo extra para você.</p>
+</main>
+<footer>💕 Meu Achadinho — ofertas e ideias para sua casa</footer>
+<script>
+document.getElementById('busca').addEventListener('input',function(){
+const termo=this.value.toLocaleLowerCase('pt-BR');
+document.querySelectorAll('.product').forEach(function(item){
+item.hidden=!item.innerText.toLocaleLowerCase('pt-BR').includes(termo)&&!item.dataset.nome.includes(termo);
+});
+});
+</script>
 </body>
 </html>
