@@ -65,7 +65,7 @@ item.hidden=!item.innerText.toLocaleLowerCase('pt-BR').includes(termo)&&!item.da
 const SHOPEE_API_URL =
   "https://ebqfrateviamwlpculgo.supabase.co/functions/v1/shopee-api";
 
-async function buscarProdutosShopee() {
+async function buscarProdutosShopee() {S
   try {
     const resposta = await fetch(SHOPEE_API_URL, {
       method: "POST",
@@ -101,7 +101,65 @@ async function buscarProdutosShopee() {
     return [];
   }
 }  
-  buscarProdutosShopee();
+  async function carregarVitrine() {
+  const produtos = await buscarProdutosShopee();
+
+  if (!produtos.length) {
+    console.error("Nenhum produto foi carregado.");
+    return;
+  }
+
+  const vitrine = document.querySelector("main");
+
+  if (!vitrine) {
+    console.error("A área principal da vitrine não foi encontrada.");
+    return;
+  }
+
+  const secao = document.createElement("section");
+  secao.className = "produtos-shopee";
+
+  const titulo = document.createElement("h2");
+  titulo.textContent = "Achadinhos da Shopee";
+  secao.appendChild(titulo);
+
+  const grade = document.createElement("div");
+  grade.className = "grade-produtos";
+
+  produtos.forEach((produto) => {
+    const card = document.createElement("article");
+    card.className = "product";
+
+    const imagem = document.createElement("img");
+    imagem.src = produto.imageUrl;
+    imagem.alt = produto.productName;
+    imagem.loading = "lazy";
+
+    const nome = document.createElement("h3");
+    nome.textContent = produto.productName;
+
+    const preco = document.createElement("p");
+    preco.textContent =
+      Number(produto.priceMin).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+
+    const link = document.createElement("a");
+    link.href = produto.productLink;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer sponsored";
+    link.textContent = "Ver oferta";
+
+    card.append(imagem, nome, preco, link);
+    grade.appendChild(card);
+  });
+
+  secao.appendChild(grade);
+  vitrine.appendChild(secao);
+}
+
+carregarVitrine();
 
 </script>
 </body>
