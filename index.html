@@ -92,9 +92,15 @@ async function buscarProdutosShopee() {
     const resultado = await resposta.json();
 
     if (!resposta.ok || !resultado.success) {
-      throw new Error("Não foi possível carregar os produtos.");
-    }
-
+  throw new Error(
+    JSON.stringify({
+      status: resposta.status,
+      errors: resultado.errors,
+      data: resultado.data
+    }, null, 2)
+  );
+}
+ 
     console.log("Produtos recebidos da Shopee:", resultado.data);
     return resultado.data?.productOfferV2?.nodes ?? [];
   } catch (erro) {
