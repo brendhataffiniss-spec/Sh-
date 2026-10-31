@@ -73,8 +73,8 @@ async function buscarProdutosShopee() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        query: `query {
-          productOfferV2(limit: 10) {
+       query: `{
+ productOfferV2(limit: 10) {
             nodes {
               itemId
               productName
@@ -187,8 +187,14 @@ document.querySelectorAll("#produtos .product a.link").forEach((botao) => {
       const texto = (card.querySelector("h3")?.textContent || "")
         .toLocaleLowerCase("pt-BR");
 
-      card.hidden = termos.length > 0 &&
-        !termos.some((termo) => texto.includes(termo.toLocaleLowerCase("pt-BR")));
+     
+const corresponde = termos.some((termo) =>
+  texto.includes(termo.toLocaleLowerCase("pt-BR"))
+);
+
+card.style.display =
+  termos.length === 0 || corresponde ? "" : "none";
+
     });
 
     const secao = document.querySelector(".produtos-shopee");
