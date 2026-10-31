@@ -65,7 +65,7 @@ item.hidden=!item.innerText.toLocaleLowerCase('pt-BR').includes(termo)&&!item.da
 const SHOPEE_API_URL =
   "https://ebqfrateviamwlpculgo.supabase.co/functions/v1/shopee-api";
 
-async function buscarProdutosShopee() {
+async function buscarProdutosShopee(palavraChave = "") {
   try {
     const resposta = await fetch(SHOPEE_API_URL, {
       method: "POST",
@@ -74,7 +74,7 @@ async function buscarProdutosShopee() {
       },
       body: JSON.stringify({
        query: `{
- productOfferV2(limit: 10) {
+ productOfferV2(keyword: "${palavraChave || "organizador de gaveta"}", limit: 10) {
             nodes {
               itemId
               productName
@@ -108,8 +108,8 @@ async function buscarProdutosShopee() {
     return [];
   }
 }  
-  async function carregarVitrine() {
-  const produtos = await buscarProdutosShopee();
+  async function carregarVitrine(palavraChave = "") {
+  const produtos = await buscarProdutosShopee(palavraChave);
 
   if (!produtos.length) {
     console.error("Nenhum produto foi carregado.");
@@ -123,7 +123,10 @@ async function buscarProdutosShopee() {
     return;
   }
 
-  const secao = document.createElement("section");
+  document.querySelector(".produtos-shopee")?.remove();
+
+const secao = document.createElement("section");
+  
   secao.className = "produtos-shopee";
 
   const titulo = document.createElement("h2");
@@ -168,43 +171,32 @@ async function buscarProdutosShopee() {
 
 
 document.querySelectorAll("#produtos .product a.link").forEach((botao) => {
-  botao.addEventListener("click", function (evento) {
+  botao.addEventListener("click", async function (evento) {
     evento.preventDefault();
 
     const categoria = this.closest(".product")?.dataset.nome || "";
 
-    const filtros = {
-      "organizador de gaveta": ["organizador", "cesto", "gaveta", "dobrável"],
-      "cozinha utensilios": ["petisqueira", "fatiador", "tábua", "utensílios", "jogo americano"],
-      "decoracao casa": ["natal", "decoração", "guirlanda", "presépio", "enfeite", "plaquinha"],
-      "limpeza organizacao": ["sabão", "limpeza", "organizador", "cesto"]
+    const buscas = {
+      "organizador de gaveta": "organizador de gaveta",
+      "cozinha utensilios": "utensílios de cozinha",
+      "decoracao casa": "decoração para casa",
+      "limpeza organizacao": "produtos de limpeza e organização"
     };
 
-    const termos = filtros[categoria] || [];
-    const cards = document.querySelectorAll(".produto-shopee-card");
+    const palavraChave = buscas[categoria];
 
-    cards.forEach((card) => {
-      const texto = (card.querySelector("h3")?.textContent || "")
-        .toLocaleLowerCase("pt-BR");
-
-     
-const corresponde = termos.some((termo) =>
-  texto.includes(termo.toLocaleLowerCase("pt-BR"))
-);
-
-card.style.display =
-  termos.length === 0 || corresponde ? "" : "none";
-
-    });
-
-    const secao = document.querySelector(".produtos-shopee");
-
-    if (secao) {
-      secao.scrollIntoView({ behavior: "smooth" });
+    if (!palavraChave) {
+      console.error("Categoria não reconhecida:", categoria);
+      return;
     }
+
+    await carregarVitrine(palavraChave);
+
+    document.querySelector(".produtos-shopee")?.scrollIntoView({
+      behavior: "smooth"
+    });
   });
 });
-
 carregarVitrine();
 
 
