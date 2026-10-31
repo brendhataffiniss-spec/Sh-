@@ -135,7 +135,7 @@ async function buscarProdutosShopee() {
 
   produtos.forEach((produto) => {
     const card = document.createElement("article");
-    card.className = "product";
+    card.className = "prcard.className = "product produto-shopee-card";oduct";
 
     const imagem = document.createElement("img");
     imagem.src = produto.imageUrl;
@@ -165,6 +165,46 @@ async function buscarProdutosShopee() {
   secao.appendChild(grade);
   vitrine.appendChild(secao);
 }
+
+document.querySelectorAll("#produtos .product a.link").forEach((botao) => {
+  botao.addEventListener("click", function (evento) {
+    evento.preventDefault();
+
+    const categoria = this.closest(".product")?.dataset.name || "";
+
+    const filtros = {
+      "organizador de gaveta": [
+        "organizador", "cesto", "gaveta", "dobrável"
+      ],
+      "cozinha utensilios": [
+        "petisqueira", "fatiador", "tábua", "utensílios",
+        "jogo americano"
+      ],
+      "decoracao casa": [
+        "natal", "decoração", "guirlanda", "presépio",
+        "enfeite", "plaquinha"
+      ],
+      "limpeza organizacao": [
+        "sabão", "limpeza", "organizador", "cesto"
+      ]
+    };
+
+    const termos = filtros[categoria] || [];
+    const cards = document.querySelectorAll(".produto-shopee-card");
+
+    cards.forEach((card) => {
+      const texto = card.textContent.toLocaleLowerCase("pt-BR");
+      card.hidden = termos.length > 0 &&
+        !termos.some((termo) => texto.includes(termo));
+    });
+
+    const secao = document.querySelector(".produtos-shopee");
+
+    if (secao) {
+      secao.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
 
 carregarVitrine();
 
