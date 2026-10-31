@@ -170,8 +170,7 @@ document.querySelectorAll("#produtos .product a.link").forEach((botao) => {
   botao.addEventListener("click", function (evento) {
     evento.preventDefault();
 
-    const categoria = this.closest(".product")?.dataset.name || "";
-
+const categoria = this.closest(".product")?.dataset.nome || "";
     const filtros = {
       "organizador de gaveta": [
         "organizador", "cesto", "gaveta", "dobrável"
