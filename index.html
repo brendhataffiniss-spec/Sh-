@@ -67,6 +67,7 @@ const SHOPEE_API_URL =
 
 async function buscarProdutosShopee(palavraChave = "") {
   try {
+     console.log("Palavra-chave enviada:", palavraChave);
     const resposta = await fetch(SHOPEE_API_URL, {
       method: "POST",
       headers: {
