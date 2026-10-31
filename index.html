@@ -147,7 +147,7 @@ async function buscarProdutosShopee() {
       });
 
     const link = document.createElement("a");
-    link.href = produto.productLink;
+ link.href = produto.offerLink || produto.productLink;
     link.target = "_blank";
     link.rel = "noopener noreferrer sponsored";
     link.textContent = "Ver oferta";
