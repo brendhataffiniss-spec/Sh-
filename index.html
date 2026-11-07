@@ -4,6 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meu Achadinho | Ofertas e novidades</title>
+
+/* VITRINE DE PRODUTOS DA SHOPEE */
+.produtos-shopee {
+  margin-top: 30px;
+}
+
+.grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.produto-shopee-card {
+  background: #fff;
+  border: 1px solid #f1d8e2;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.produto-shopee-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  background: #fff7fa;
+  border-radius: 10px;
+}
+
+.produto-shopee-card h3 {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.produto-shopee-card p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e94f8a;
+  margin: 0;
+}
+
+.produto-shopee-card a {
+  display: block;
+  background: #e94f8a;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 11px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-top: auto;
+}
+
+.produto-shopee-card a:hover {
+  background: #d93678;
+}
+
+@media (min-width: 600px) {
+  .grade-produtos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#fff7fa;color:#4a2638}
