@@ -116,6 +116,55 @@ footer{text-align:center;padding:24px;background:#fce0ea;margin-top:24px;font-si
 <article class="product" data-nome="limpeza organizacao">
 <div class="emoji">🧽</div><h3>Limpeza inteligente</h3><p>Produtos úteis para ajudar na rotina da casa.</p><a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
 </article>
+ 
+<article class="product" data-nome="beleza cuidados">
+  <div class="emoji">💄</div>
+  <h3>Beleza e cuidados</h3>
+  <p>Maquiagens, skincare e cuidados pessoais.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+
+<article class="product" data-nome="eletronicos">
+  <div class="emoji">📱</div>
+  <h3>Eletrônicos</h3>
+  <p>Fones, acessórios e novidades tecnológicas.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+
+<article class="product" data-nome="moda acessorios">
+  <div class="emoji">👗</div>
+  <h3>Moda e acessórios</h3>
+  <p>Roupas, bolsas, calçados e acessórios.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+
+<article class="product" data-nome="infantil brinquedos">
+  <div class="emoji">🧸</div>
+  <h3>Infantil e brinquedos</h3>
+  <p>Brinquedos, diversão e novidades infantis.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+
+<article class="product" data-nome="pet shop">
+  <div class="emoji">🐶</div>
+  <h3>Pet shop</h3>
+  <p>Produtos e acessórios para seus pets.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+
+<article class="product" data-nome="esporte fitness">
+  <div class="emoji">🏋️</div>
+  <h3>Esporte e fitness</h3>
+  <p>Acessórios para atividades e exercícios.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
+
+<article class="product" data-nome="automotivo carro">
+  <div class="emoji">🚗</div>
+  <h3>Acessórios automotivos</h3>
+  <p>Novidades e acessórios para seu carro.</p>
+  <a class="link" href="https://shopee.com.br/" target="_blank" rel="noopener noreferrer">Ver na Shopee</a>
+</article>
 </div>
 <p class="note">Os preços e a disponibilidade dos produtos podem mudar na Shopee. Os links desta vitrine podem gerar comissão para o Meu Achadinho, sem custo adicional para você. Os links ainda precisam ser substituídos pelos seus links de afiliada aprovados. Alguns links podem gerar comissão para a loja, sem custo extra para você.</p>
 </main>
@@ -242,12 +291,21 @@ document.querySelectorAll("#produtos .product a.link").forEach((botao) => {
 
     const categoria = this.closest(".product")?.dataset.nome || "";
 
-    const buscas = {
-      "organizador de gaveta": "organizador de gaveta",
-      "cozinha utensilios": "utensílios de cozinha",
-      "decoracao casa": "decoração para casa",
-      "limpeza organizacao": "produtos de limpeza e organização"
-    };
+    
+const buscas = {
+  "organizador de gaveta": "organizador de gaveta",
+  "cozinha utensilios": "utensílios de cozinha",
+  "decoracao casa": "decoração para casa",
+  "limpeza organizacao": "produtos de limpeza e organização",
+  "beleza cuidados": "produtos de beleza e skincare",
+  "eletronicos": "eletrônicos e acessórios",
+  "moda acessorios": "moda feminina e acessórios",
+  "infantil brinquedos": "brinquedos infantis",
+  "pet shop": "acessórios para cães e gatos",
+  "esporte fitness": "acessórios fitness e esportivos",
+  "automotivo carro": "acessórios automotivos para carros"
+};
+
 
     const palavraChave = buscas[categoria];
 
